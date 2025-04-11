@@ -15,6 +15,9 @@ const Register = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [isRegistered, setIsRegistered] = useState(false); // State for registration success
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // State for showing success message
+  const [tempFormData, setTempFormData] = useState(null); // Temporary storage for form data
   const { user, token } = useAuth();
   const navigate = useNavigate();
 
@@ -33,28 +36,33 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post('/api/register/', formData, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      alert('User registered successfully');
-      setFormData({
-        username: '',
-        email: '',
-        phone_number: '',
-        password: '',
-        role: 'lecteur'
-      });
-    } catch (error) {
-      console.error('Registration failed:', error);
-      setError('Registration failed. Please try again.');
-    }
+    // Store the form data temporarily instead of sending it immediately
+    setTempFormData(formData);
+    setIsRegistered(true); // Show confirmation modal
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleConfirmation = async (confirmed) => {
+    if (confirmed && tempFormData) {
+      try {
+        // Send the temporary form data to the backend
+        await axios.post('/api/register/', tempFormData, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        setShowSuccessMessage(true); // Show success message in the form
+      } catch (error) {
+        console.error('Registration failed:', error);
+        setError('Registration failed. Please try again.');
+      }
+    }
+    // Clear temporary data regardless of confirmation
+    setTempFormData(null);
+    setIsRegistered(false); // Reset the registration success state
   };
 
   return (
@@ -73,6 +81,13 @@ const Register = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white/10 backdrop-blur-sm py-8 px-4 shadow-xl shadow-indigo-500/10 border border-white/20 rounded-lg sm:px-10">
+          {/* Success Message */}
+          {showSuccessMessage && (
+            <div className="mb-4 p-3 bg-green-500/20 text-green-200 rounded-lg text-sm">
+              User confirmed successfully!
+            </div>
+          )}
+
           {error && (
             <div className="mb-4 p-3 bg-red-500/20 text-red-200 rounded-lg text-sm">
               {error}
@@ -187,6 +202,31 @@ const Register = () => {
           </form>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {isRegistered && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#050829] bg-opacity-20">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center min-h-[10rem]">
+            <p className="text-lg font-medium text-gray-800 mb-4">
+              User registered successfully! Do you want to confirm?
+            </p>
+            <div className="flex justify-center space-x-4">
+              <button
+                onClick={() => handleConfirmation(true)}
+                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-200"
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => handleConfirmation(false)}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

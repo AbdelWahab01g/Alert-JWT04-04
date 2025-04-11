@@ -158,6 +158,7 @@ const ControleurDashboard = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Card 1 */}
+          <Link to="/create-alert">
           <div className="bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] 
               shadow-lg hover:shadow-xl shadow-gray-300/50 hover:shadow-gray-400/60">
             <img
@@ -172,6 +173,7 @@ const ControleurDashboard = () => {
               </p>
             </div>
           </div>
+          </Link>
 
           {/* Card 2 - NetCDF File Upload */}
           <div

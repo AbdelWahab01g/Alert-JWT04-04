@@ -229,7 +229,7 @@ const AdminDashboard = () => {
           {/* User Table */}
           <div className="overflow-x-auto rounded-[12px]">
             <table className="min-w-full divide-y divide-gray-200 rounded-[12px]">
-              <thead className="bg-gray-700">
+              <thead className="bg-[#050829]">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider rounded-tl-[12px]">
                     Username

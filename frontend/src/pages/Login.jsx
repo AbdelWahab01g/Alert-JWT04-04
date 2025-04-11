@@ -58,7 +58,7 @@ const Login = () => {
 
           {/* Title */}
           <div className="absolute left-0 right-0 top-[10%] text-red-500 text-4xl md:text-5xl font-semibold text-center font-rubik">
-            Sign In
+            LogIn
           </div>
 
           {/* Form */}
@@ -108,7 +108,7 @@ const Login = () => {
               type="submit"
               className="absolute left-1/2 transform -translate-x-1/2 top-[65%] w-[90%] h-14 bg-red-600 rounded-[10px] text-white text-xl md:text-2xl font-medium hover:bg-red-700 transition font-rubik"
             >
-              Sign In
+              LogIn
             </button>
           </form>
 
