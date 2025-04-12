@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, Home, Users, Menu, X, LayoutDashboard, Settings, LogOut } from 'lucide-react';
 import Logo from '../imgs/logo2.png';
 
 const LecteurAlert = () => {
@@ -32,10 +32,31 @@ const LecteurAlert = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1); // Go back one step in the browser's history
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 relative">
-      {/* Navigation and Sidebar (similar to other dashboards) */}
+      {/* Navigation Bar */}
+      <nav className="flex items-center bg-gray-900 text-white p-4 shadow-md h-[100px]">
+        <div className="flex items-center absolute left-4">
+          <img src={Logo} alt="Logo" className="h-[130px] w-[280px]" />
+        </div>
 
+        <div className="flex justify-center items-center space-x-10 w-full">
+          <button
+            onClick={handleBack}
+            className="flex items-center space-x-2 hover:text-gray-300"
+          >
+            <Home className="h-5 w-5" />
+            <span>Home</span>
+          </button>
+        </div>
+
+      </nav>
+
+      {/* Alerts Section */}
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-lg p-6 shadow-lg">
           {/* Title with AlertTriangle Icon */}

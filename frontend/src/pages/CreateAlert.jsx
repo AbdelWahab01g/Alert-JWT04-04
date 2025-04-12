@@ -74,18 +74,25 @@ const CreateAlert = () => {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1); // Go back one step in the browser's history
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 relative">
       {/* Navigation Bar */}
-      <nav className="flex items-center bg-gray-900 text-white p-4 shadow-md h-[100px]">
+      <nav className="flex items-center bg-gray-900 text-white p-4 shadow-md h-[100px] mb-7">
         <div className="flex items-center absolute left-4">
           <img src={Logo} alt="Logo" className="h-[130px] w-[280px]" />
         </div>
         <div className="flex justify-center items-center space-x-10 w-full">
-          <Link to="/home" className="flex items-center space-x-2 hover:text-gray-300">
+          <button
+            onClick={handleBack}
+            className="flex items-center space-x-2 hover:text-gray-300"
+          >
             <Home className="h-5 w-5" />
-            <span>Home</span>
-          </Link>
+            <span>Back</span>
+          </button>
           <Link to="/controleur" className="flex items-center space-x-2 hover:text-gray-300">
             <UserCog className="h-5 w-5" />
             <span>Controleur</span>
@@ -95,20 +102,19 @@ const CreateAlert = () => {
             <span>Lecteur</span>
           </Link>
         </div>
-        <button 
+        <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="flex items-center absolute right-4 hover:text-gray-300"
         >
           <Menu className="h-6 w-6" />
         </button>
       </nav>
-
       {/* Sidebar */}
       {sidebarOpen && (
         <div className="fixed top-0 right-0 h-full w-64 bg-[#060923] text-white shadow-lg z-50 flex flex-col">
           {/* Close button */}
           <div className="flex justify-end p-4">
-            <button 
+            <button
               onClick={() => setSidebarOpen(false)}
               className="hover:text-gray-300"
             >
@@ -121,7 +127,7 @@ const CreateAlert = () => {
               <UserCog className="h-5 w-5" />
             </div>
             <span className="font-semibold text-lg">{user?.username}</span>
-            <span className="text-sm text-gray-400">Admin</span>
+            <span className="text-sm text-gray-400">{user?.role}</span>
           </div>
           {/* Bottom buttons */}
           <div className="p-4 border-t border-gray-700">
@@ -129,7 +135,7 @@ const CreateAlert = () => {
               <Settings className="h-5 w-5" />
               <span>Settings</span>
             </button>
-            <button 
+            <button
               onClick={logout}
               className="flex items-center space-x-3 w-full p-3 hover:bg-gray-700 rounded-lg text-red-400"
             >
@@ -139,8 +145,8 @@ const CreateAlert = () => {
           </div>
         </div>
       )}
-
       <div className="container mx-auto px-4 py-8">
+        
         {/* Create Alert Form */}
         <div className="bg-[#050829] rounded-lg p-6 shadow-lg mb-8 text-center">
           <h2 className="text-2xl font-bold mb-4 flex items-center justify-center gap-2 text-yellow-500">
@@ -160,7 +166,6 @@ const CreateAlert = () => {
                 required
               />
             </div>
-
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium mb-1 text-white">Niveau</label>
@@ -175,7 +180,6 @@ const CreateAlert = () => {
                   <option value="low">Low</option>
                 </select>
               </div>
-
               <div>
                 <label className="block text-sm font-medium mb-1 text-white">Action</label>
                 <select
@@ -190,7 +194,6 @@ const CreateAlert = () => {
                 </select>
               </div>
             </div>
-
             <button
               type="submit"
               className="mt-5 px-40 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
@@ -199,7 +202,6 @@ const CreateAlert = () => {
             </button>
           </form>
         </div>
-
         {/* Alerts Table */}
         <div className="bg-white rounded-lg p-6 shadow-lg overflow-hidden">
           <h2 className="text-2xl font-bold mb-4 text-center">Recent Alerts</h2>
@@ -211,7 +213,7 @@ const CreateAlert = () => {
                   <th className="px-4 py-2">Description</th>
                   <th className="px-4 py-2">Niveau</th>
                   <th className="px-4 py-2">Action</th>
-                  <th className="px-4 py-2 rounded-tr-lg">Actions</th>
+                  <th className="px-4 py-2 rounded-tr-lg">Delete</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-transparent">
@@ -234,7 +236,7 @@ const CreateAlert = () => {
                       </button>
                       {/* Delete Confirmation Modal */}
                       {showDeleteConfirm === alert.id && (
-                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                        <div className="fixed inset-0 bg-[#050829] bg-opacity-10 flex items-center justify-center z-50">
                           <div className="bg-white p-6 rounded-lg max-w-md">
                             <h3 className="text-lg font-semibold mb-4">Confirm Deletion</h3>
                             <p className="mb-4">Are you sure you want to delete this alert?</p>

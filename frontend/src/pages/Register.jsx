@@ -36,6 +36,8 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(''); // Clear any previous errors
+    setShowSuccessMessage(false); // Clear any previous success messages
     // Store the form data temporarily instead of sending it immediately
     setTempFormData(formData);
     setIsRegistered(true); // Show confirmation modal
@@ -46,6 +48,8 @@ const Register = () => {
   };
 
   const handleConfirmation = async (confirmed) => {
+    setIsRegistered(false); // Always hide the modal first
+    
     if (confirmed && tempFormData) {
       try {
         // Send the temporary form data to the backend
@@ -55,14 +59,21 @@ const Register = () => {
           }
         });
         setShowSuccessMessage(true); // Show success message in the form
+        // Reset form after successful registration
+        setFormData({
+          username: '',
+          email: '',
+          phone_number: '',
+          password: '',
+          role: 'lecteur'
+        });
       } catch (error) {
         console.error('Registration failed:', error);
-        setError('Registration failed. Please try again.');
+        setError(error.response?.data?.message || 'Registration failed. Please try again.');
       }
     }
-    // Clear temporary data regardless of confirmation
+    // Clear temporary data
     setTempFormData(null);
-    setIsRegistered(false); // Reset the registration success state
   };
 
   return (
@@ -84,7 +95,7 @@ const Register = () => {
           {/* Success Message */}
           {showSuccessMessage && (
             <div className="mb-4 p-3 bg-green-500/20 text-green-200 rounded-lg text-sm">
-              User confirmed successfully!
+              User registered successfully!
             </div>
           )}
 
@@ -205,10 +216,10 @@ const Register = () => {
 
       {/* Confirmation Modal */}
       {isRegistered && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#050829] bg-opacity-20">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center min-h-[10rem]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center min-h-[10rem] w-full max-w-md">
             <p className="text-lg font-medium text-gray-800 mb-4">
-              User registered successfully! Do you want to confirm?
+              Are you sure you want to register this user?
             </p>
             <div className="flex justify-center space-x-4">
               <button

@@ -18,8 +18,8 @@ import {
 } from 'lucide-react';
 import Logo from '../imgs/logo2.png';
 import CardImage1 from '../imgs/shutterstock_150027575-1024x576.jpg'; // Replace with actual image path
-import CardImage2 from '../imgs/background0.jpeg'; // Replace with actual image path
-import CardImage3 from '../imgs/background0.jpeg'; // Replace with actual image path
+import CardImage2 from '../imgs/telechargeimage.jpg'; // Replace with actual image path
+import CardImage3 from '../imgs/Archive.jpg'; // Replace with actual image path
 import axios from 'axios';
 
 const AdminDashboard = () => {
@@ -181,16 +181,16 @@ const AdminDashboard = () => {
           <div className="bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl shadow-gray-300/50 hover:shadow-gray-400/60">
             <img src={CardImage2} alt="System Settings" className="w-full h-48 object-cover" />
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">System Settings</h3>
-              <p className="text-gray-600">Configure application settings and preferences.</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">Upload Files</h3>
+              <p className="text-gray-600">Hier you can upload your Files.</p>
             </div>
           </div>
           {/* Card 3 */}
           <div className="bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl shadow-gray-300/50 hover:shadow-gray-400/60">
             <img src={CardImage3} alt="Reports" className="w-full h-48 object-cover" />
             <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">Reports</h3>
-              <p className="text-gray-600">View system usage and activity reports.</p>
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">Archive</h3>
+              <p className="text-gray-600">Hier you can check the Archive.</p>
             </div>
           </div>
         </div>

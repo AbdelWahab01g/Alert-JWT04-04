@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Home, Users, Menu, X, LayoutDashboard, Settings, LogOut } from 'lucide-react';
 import Logo from '../imgs/logo2.png';
 import CardImage1 from '../imgs/shutterstock_150027575-1024x576.jpg'; // change imgs later bdatlom atfaker
-import CardImage2 from '../imgs/background0.jpeg'; // change imgs later bdatlom atfaker
+import CardImage3 from '../imgs/Archive.jpg'; // change imgs later bdatlom atfaker
 import { useState } from 'react';
 
 const LecteurDashboard = () => {
@@ -90,7 +90,7 @@ const LecteurDashboard = () => {
 
       {/* Enhanced Cards Section with Improved Shadows */}
       <div className="container mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Services</h2>
+        <h2 className="text-3xl font-bold text-center mb-8 text-gray-800">Lecteur Services</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Card 1 */}
@@ -111,24 +111,17 @@ const LecteurDashboard = () => {
           </div>
           </Link>
 
-          {/* Card 2 */}
-          <div className="bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] 
-              shadow-lg hover:shadow-xl shadow-gray-300/50 hover:shadow-gray-400/60 w-[90%] mx-auto">
-            <img 
-              src={CardImage2} 
-              alt="Service 2" 
-              className="w-full h-55 object-cover"
-            />
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">Archive</h3>
-              <p className="text-gray-600">
-                Hier you can find old Maps / Layears.
-              </p>
-            </div>
+          {/* Card 3 */}
+                <div className="bg-white rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl shadow-gray-300/50 hover:shadow-gray-400/60">
+                  <img src={CardImage3} alt="Reports" className="w-full h-48 object-cover" />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 text-gray-800">Archive</h3>
+                    <p className="text-gray-600">Hier you can check the Archive.</p>
+                </div>
+              </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
