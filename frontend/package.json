@@ -17,11 +17,17 @@
     "@tailwindcss/vite": "^4.1.0",
     "axios": "^1.8.4",
     "framer-motion": "^12.6.3",
+    "leaflet": "^1.9.4",
+    "leaflet-timedimension": "^1.1.1",
+    "leaflet.fullscreen": "^4.0.0",
     "lucide-react": "^0.486.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0-rc.2",
     "react-router-dom": "^7.4.1",
-    "tailwindcss": "^4.1.0"
+    "tailwindcss": "^4.1.0",
+    "vite-plugin-node-polyfills": "^0.23.0",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

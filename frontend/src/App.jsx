@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute';
 import EditUser from "./pages/EditUser";
 import CreateAlert from "./pages/CreateAlert";
 import LecteurAlert from "./pages/LecteurAlert";
+import InterfacePage from "./pages/InterfacePage";
 
 function App() {
   return (
@@ -61,6 +62,11 @@ function App() {
             </PrivateRoute>
           } />
 
+          <Route path="/interface" element={
+            <PrivateRoute allowedRoles={['admin', 'controleur', 'lecteur']}>
+              <InterfacePage />
+            </PrivateRoute>
+          } /> 
 
           {/* <Route path="/mapping-interface" element={
             <PrivateRoute allowedRoles={['admin', 'controleur', 'lecteur']}>

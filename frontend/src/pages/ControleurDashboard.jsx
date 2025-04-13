@@ -67,10 +67,12 @@ const ControleurDashboard = () => {
 
           {/* Interface section */}
           <div className="p-4 flex-grow">
-            <div className="flex items-center space-x-3 p-3 text-white hover:bg-gray-700 rounded-lg cursor-pointer">
+            <Link
+              to="/interface"
+            className="flex items-center space-x-3 p-3 text-white hover:bg-gray-700 rounded-lg cursor-pointer">
               <LayoutDashboard className="h-5 w-5" />
               <span className="font-medium">Interface Mapping</span>
-            </div>
+            </Link>
           </div>
 
           {/* Bottom buttons */}
